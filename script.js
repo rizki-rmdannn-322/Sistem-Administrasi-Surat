@@ -54,10 +54,11 @@
     // Data & penyimpanan (Firebase Firestore, dipakai bersama semua perangkat)
 
     const FIREBASE_CONFIG = {
-        apiKey: "ISI_DARI_FIREBASE",
-        authDomain: "ISI_DARI_FIREBASE",
-        projectId: "ISI_DARI_FIREBASE",
-        appId: "ISI_DARI_FIREBASE"
+    apiKey: "AIzaSyABC123...",
+    authDomain: "agenda-surat-xxxx.firebaseapp.com",
+    projectId: "agenda-surat-xxxx",
+    appId: "1:123456789:web:abcdef"
+};
     };
     firebase.initializeApp(FIREBASE_CONFIG);
     const ref = firebase.firestore().collection("agenda").doc("main");
