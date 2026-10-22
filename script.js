@@ -51,22 +51,24 @@
     };
     const jam = iso => { const d = new Date(iso); return pad(d.getHours()) + ":" + pad(d.getMinutes()); };
 
-    // Data & penyimpanan (localStorage)
+    // Data & penyimpanan (Firebase Firestore, dipakai bersama semua perangkat)
 
-    const KEY = "agenda_surat_v1";
+    const FIREBASE_CONFIG = {
+        apiKey: "ISI_DARI_FIREBASE",
+        authDomain: "ISI_DARI_FIREBASE",
+        projectId: "ISI_DARI_FIREBASE",
+        appId: "ISI_DARI_FIREBASE"
+    };
+    firebase.initializeApp(FIREBASE_CONFIG);
+    const ref = firebase.firestore().collection("agenda").doc("main");
+    const KEY = "agenda_surat_v1"; // kunci localStorage lama, hanya untuk migrasi data
     let DB = { surat: [], riwayat: [], seq: 1 };
-    try {
-        const s = JSON.parse(localStorage.getItem(KEY));
-        if (s && Array.isArray(s.surat))
-            DB = { ...DB, ...s };
-    }
-    catch { }
-    const save = () => { try {
-        localStorage.setItem(KEY, JSON.stringify(DB));
-    }
-    catch {
-        toast("Penyimpanan browser penuh/ditolak", "er");
-    } };
+    let ready = false;
+    const save = () => {
+        if (!ready)
+            return toast("Data belum dimuat dari server", "er");
+        ref.set(JSON.parse(JSON.stringify(DB))).catch(() => toast("Gagal menyimpan ke server", "er"));
+    };
     const byId = id => DB.surat.find(r => String(r.id) === String(id));
     const log = (aksi, r, detail) => { DB.riwayat.unshift({ id: Date.now() + Math.random(), sid: r.id, aksi, jenis: r.jenis, nomor: r.nomor, detail, at: new Date().toISOString() }); DB.riwayat = DB.riwayat.slice(0, 500); };
     const cut = (s, n = 70) => { s = String(s).replace(/\s+/g, " ").trim(); return s.length > n ? s.slice(0, n) + "…" : s; };
@@ -506,10 +508,12 @@
             detail(byId(tr.dataset.id));
     });
 
-    document.addEventListener("submit", e => { if (e.target.id === "fm") {
-        e.preventDefault();
-        submitForm(e.target);
-    } });
+    document.addEventListener("submit", e => {
+        if (e.target.id === "fm") {
+            e.preventDefault();
+            submitForm(e.target);
+        }
+    });
 
     document.addEventListener("input", e => {
         if (e.target.id === "df" || e.target.id === "dto") {
@@ -580,5 +584,31 @@
 
     if (!location.hash)
         history.replaceState(null, "", "#/beranda");
-    setView(fromHash(), false);
+
+    // Sinkronisasi data dengan server
+
+    function listen() {
+        ref.onSnapshot(snap => {
+            if (snap.metadata.hasPendingWrites)
+                return;
+            const first = !ready;
+            if (snap.exists)
+                DB = { surat: [], riwayat: [], seq: 1, ...snap.data() };
+            else {
+                // Dokumen belum ada: pindahkan data lama dari localStorage perangkat ini (jika ada)
+                try {
+                    const old = JSON.parse(localStorage.getItem(KEY));
+                    if (old && Array.isArray(old.surat))
+                        DB = { ...DB, ...old };
+                }
+                catch { }
+                ready = true;
+                save();
+            }
+            ready = true;
+            first ? setView(fromHash(), false) : refresh();
+        }, err => toast("Gagal memuat data: " + err.code, "er"));
+    }
+
+    listen();
 })();
