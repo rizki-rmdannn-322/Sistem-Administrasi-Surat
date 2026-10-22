@@ -646,3 +646,25 @@
         }
     });
 })();
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyByCg6dqW3610CxwQfdhRMV0yrQOufHAx0",
+  authDomain: "sistem-administrasi-surat.firebaseapp.com",
+  projectId: "sistem-administrasi-surat",
+  storageBucket: "sistem-administrasi-surat.firebasestorage.app",
+  messagingSenderId: "705208894251",
+  appId: "1:705208894251:web:350643e01b0200577ffb6e",
+  measurementId: "G-DNGRC0F9DQ"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
