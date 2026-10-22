@@ -54,11 +54,15 @@
     // Data & penyimpanan (Firebase Firestore, dipakai bersama semua perangkat)
 
     const FIREBASE_CONFIG = {
-        apiKey: "ISI_DARI_FIREBASE",
-        authDomain: "ISI_DARI_FIREBASE",
-        projectId: "ISI_DARI_FIREBASE",
-        appId: "ISI_DARI_FIREBASE"
-    };
+  apiKey: "AIzaSyAiLylQl2B4jtoBJT47CmWwNobesgKHNgM",
+  authDomain: "sistem-administrasi-sura-1413b.firebaseapp.com",
+  projectId: "sistem-administrasi-sura-1413b",
+  storageBucket: "sistem-administrasi-sura-1413b.firebasestorage.app",
+  messagingSenderId: "665939059922",
+  appId: "1:665939059922:web:21283e7642871f7f46b90b",
+  measurementId: "G-DD62NEC1PX"
+};
+    
     firebase.initializeApp(FIREBASE_CONFIG);
     const ref = firebase.firestore().collection("agenda").doc("main");
     const KEY = "agenda_surat_v1"; // kunci localStorage lama, hanya untuk migrasi data
