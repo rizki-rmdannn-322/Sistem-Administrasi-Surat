@@ -31,7 +31,8 @@
         wand: '<path d="m15 4 5 5L8 21l-5-5Z"/><path d="M5 2v3M3.5 3.5h3M19 15v3M17.5 16.5h3"/>',
         mail: '<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/>',
         trend: '<path d="m22 7-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/>', chart: '<path d="M3 3v18h18"/><path d="M7 16v-5M12 16V8M17 16v-3"/>',
-        save: '<path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2Z"/><path d="M17 21v-8H7v8M7 3v5h8"/>'
+        save: '<path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2Z"/><path d="M17 21v-8H7v8M7 3v5h8"/>',
+        lock: '<rect x="3" y="10" width="18" height="11" rx="2"/><path d="M7 10V7a5 5 0 0 1 10 0v3"/>'
     };
     const ic = n => `<svg class="ic" viewBox="0 0 24 24">${P[n]}</svg>`;
     P.out = '<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>';
@@ -120,6 +121,11 @@
     }
     catch { }
     setTheme(th || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));
+    $("#login-app-icon").innerHTML = ic("mail");
+    $("#login-email-icon").innerHTML = ic("mail");
+    $("#login-lock-icon").innerHTML = ic("lock");
+    $("#login-eye-icon").innerHTML = ic("eye");
+    $("#login-year").textContent = new Date().getFullYear();
     $("#theme").onclick = () => setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark");
     $("#sIc").innerHTML = ic("search");
     $("#gc").innerHTML = ic("x");
@@ -427,7 +433,18 @@
         refresh();
     }
     const fromHash = () => { const v = location.hash.replace(/^#\/?/, ""); return META[v] ? v : "beranda"; };
-    addEventListener("hashchange", () => setView(fromHash()));
+    addEventListener("hashchange", () => {
+        if (!auth.currentUser) {
+            if (location.hash !== "#/login")
+                history.replaceState(null, "", "#/login");
+            return;
+        }
+        if (location.hash === "#/login") {
+            history.replaceState(null, "", "#/beranda");
+            return setView("beranda");
+        }
+        setView(fromHash());
+    });
 
     document.addEventListener("click", e => {
         const g = id => e.target.closest(id);
@@ -521,8 +538,53 @@
         }
         if (e.target.id === "lg") {
             e.preventDefault();
-            const v = Object.fromEntries(new FormData(e.target));
-            auth.signInWithEmailAndPassword(v.email.trim(), v.pw).catch(er => toast(/invalid-credential|wrong-password|user-not-found|invalid-email|missing-password/.test(er.code) ? "Email atau kata sandi salah" : "Gagal masuk: " + er.code, "er"));
+            const form = e.target, email = form.elements.email, password = form.elements.pw;
+            const emailError = $("[data-error-for=email]");
+            const passwordError = $("[data-error-for=pw]");
+            const message = $("#login-error");
+            emailError.hidden = true;
+            passwordError.hidden = true;
+            message.hidden = true;
+            if (!email.value.trim()) {
+                emailError.textContent = "Masukkan alamat email Anda.";
+                emailError.hidden = false;
+                email.focus();
+                return;
+            }
+            if (!email.validity.valid) {
+                emailError.hidden = false;
+                email.focus();
+                return;
+            }
+            if (!password.value) {
+                passwordError.hidden = false;
+                password.focus();
+                return;
+            }
+            const button = $("#login-submit"), label = $(".login-submit-label", button);
+            button.disabled = true;
+            button.classList.add("loading");
+            button.setAttribute("aria-busy", "true");
+            label.textContent = "Memverifikasi akun...";
+            auth.signInWithEmailAndPassword(email.value.trim(), password.value).catch(er => {
+                const text = /invalid-credential|wrong-password|user-not-found|invalid-email|missing-password/.test(er.code) ? "Email atau kata sandi salah" : "Gagal masuk: " + er.code;
+                message.textContent = text;
+                message.hidden = false;
+                button.disabled = false;
+                button.classList.remove("loading");
+                button.removeAttribute("aria-busy");
+                label.textContent = "Masuk sebagai Admin";
+                password.focus();
+            });
+        }
+    });
+
+    document.addEventListener("input", e => {
+        if (e.target.name === "email" || e.target.name === "pw") {
+            const fieldError = $(`[data-error-for=${e.target.name}]`);
+            if (fieldError)
+                fieldError.hidden = true;
+            $("#login-error").hidden = true;
         }
     });
 
@@ -594,19 +656,9 @@
     });
 
     if (!location.hash)
-        history.replaceState(null, "", "#/beranda");
+        history.replaceState(null, "", "#/login");
 
     // Login & sinkronisasi data
-
-    function loginModal() {
-        locked = false;
-        openModal(`<div class="mh"><h4>${ic("mail")} Masuk Admin</h4></div>
-  <form id="lg" novalidate><div class="mb">
-    <div class="fl"><label>Email</label><input type="email" name="email" autocomplete="username" required></div>
-    <div class="fl"><label>Kata sandi</label><div style="position:relative"><input type="password" name="pw" autocomplete="current-password" required style="padding-right:46px"><button type="button" class="pwt" aria-label="Tampilkan kata sandi" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:0;padding:6px;cursor:pointer;color:var(--mu);display:flex;line-height:0">${ic("eye")}</button></div></div>
-  </div><div class="mf"><button class="btn b-pr">Masuk</button></div></form>`);
-        locked = true;
-    }
 
     function listen() {
         unsub = ref.onSnapshot(snap => {
@@ -646,6 +698,10 @@
         if (u) {
             locked = false;
             closeModal();
+            $("#login-page").hidden = true;
+            $("#app-shell").hidden = false;
+            if (location.hash === "#/login")
+                history.replaceState(null, "", "#/beranda");
             listen();
         }
         else {
@@ -653,7 +709,10 @@
             ready = false;
             DB = { surat: [], riwayat: [], seq: 1 };
             view.innerHTML = "";
-            loginModal();
+            $("#app-shell").hidden = true;
+            $("#login-page").hidden = false;
+            if (location.hash !== "#/login")
+                history.replaceState(null, "", "#/login");
         }
     });
 })();
