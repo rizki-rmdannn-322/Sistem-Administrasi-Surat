@@ -709,6 +709,12 @@
             ready = false;
             DB = { surat: [], riwayat: [], seq: 1 };
             view.innerHTML = "";
+            const loginButton = $("#login-submit"), loginLabel = $(".login-submit-label", loginButton);
+            loginButton.disabled = false;
+            loginButton.classList.remove("loading");
+            loginButton.removeAttribute("aria-busy");
+            loginLabel.textContent = "Masuk sebagai Admin";
+            $("#login-error").hidden = true;
             $("#app-shell").hidden = true;
             $("#login-page").hidden = false;
             if (location.hash !== "#/login")
