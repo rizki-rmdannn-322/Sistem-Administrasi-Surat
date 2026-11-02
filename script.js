@@ -120,7 +120,7 @@
         th = localStorage.getItem("agenda_theme");
     }
     catch { }
-    setTheme(th || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));
+    setTheme(th || "light");
     $("#login-app-icon").innerHTML = ic("mail");
     $("#login-email-icon").innerHTML = ic("mail");
     $("#login-lock-icon").innerHTML = ic("lock");
