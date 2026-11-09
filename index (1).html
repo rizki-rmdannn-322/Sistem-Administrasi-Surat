@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buku Agenda Surat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <aside class="side" id="side">
+    <div class="sb-brand">
+      <img src="logo unisa.png.jpg" alt="Logo" onerror="this.style.display='none'">
+      <div><b>Buku Agenda Surat</b><small>Universitas Islam Al-Ihya Kuningan</small></div>
+    </div>
+    <nav class="sb-nav" id="nav" aria-label="Menu utama"></nav>
+    <div class="sb-user">
+      <div class="av" id="uav"></div>
+      <div class="who"><b id="unm"></b><span id="urole"></span></div>
+      <button class="ibtn" data-logout title="Keluar akun" aria-label="Keluar akun"></button>
+    </div>
+  </aside>
+
+  <header>
+    <div class="wrap hd">
+      <div class="brand">
+        <img src="logo unisa.png.jpg" alt="Logo" onerror="this.style.display='none'">
+        <div>
+          <h1>Buku Agenda Surat Masuk dan Keluar</h1>
+          <p>Sistem Administrasi Surat Universitas Islam Al-Ihya Kuningan</p>
+        </div>
+      </div>
+      <div class="sp"></div>
+      <div class="search" id="sbox">
+        <span id="sIc"></span>
+        <input id="gs" placeholder="Cari nomor agenda, instansi, perihal...   ( tekan / )" autocomplete="off">
+        <button id="gc" aria-label="Hapus"></button>
+      </div>
+      <div class="chip-d" id="dt"></div>
+      <button class="btn b-pr" id="cta" data-add></button>
+      <button class="ibtn" id="theme" title="Ganti tema"></button>
+      <button class="ibtn" id="usr" title="Kelola pengguna" style="display:none"></button>
+      <button class="ibtn" id="out" data-logout title="Keluar akun"></button>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <div id="view" class="view"></div>
+    </div>
+  </main>
+
+  <footer>
+    Copyright &copy; <span id="yr"></span> by <strong>Muhamad Rizki Ramdani</strong><br>
+    Sistem Administrasi Buku Agenda Surat Masuk dan Keluar
+  </footer>
+
+  <nav class="dock" id="dock" aria-label="Menu utama"></nav>
+  <div class="ov" id="ov">
+    <div class="md" id="md"></div>
+  </div>
+  <div class="toasts" id="toasts"></div>
+  <div id="pa"></div>
+  <input type="file" id="file" accept=".json,application/json" hidden>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="docx.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
