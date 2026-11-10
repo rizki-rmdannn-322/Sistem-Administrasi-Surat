@@ -1,17 +1,12 @@
 (() => {
     "use strict";
-
-    // ============================================================
     //  Helper DOM & keamanan teks
-    // ============================================================
     const $ = (s, r = document) => r.querySelector(s);
     const $$ = (s, r = document) => [...r.querySelectorAll(s)];
     const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
     const reEsc = s => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
-    // ============================================================
     //  Ikon SVG
-    // ============================================================
     const P = {
         home: '<path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z"/>',
         list: '<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>',
@@ -43,10 +38,8 @@
     };
     const ic = n => `<svg class="ic" viewBox="0 0 24 24">${P[n]}</svg>`;
     $$("[data-ic]").forEach(e => e.innerHTML = ic(e.dataset.ic));
-
-    // ============================================================
+    
     //  Format tanggal & waktu
-    // ============================================================
     const pad = n => String(n).padStart(2, "0");
     const dkey = d => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
     const today = () => dkey(new Date());
@@ -62,10 +55,8 @@
     const jam = iso => { const d = new Date(iso); return pad(d.getHours()) + ":" + pad(d.getMinutes()); };
     const cut = (s, n = 70) => { s = String(s ?? "").replace(/\s+/g, " ").trim(); return s.length > n ? s.slice(0, n) + "…" : s; };
 
-    // ============================================================
     //  Firebase (Auth + Firestore)
     //  Koleksi: users/{uid} • surat/{id} • riwayat/{id} • meta/counters
-    // ============================================================
     const FIREBASE_CONFIG = {
         apiKey: "AIzaSyAiLylQl2B4jtoBJT47CmWwNobesgKHNgM",
         authDomain: "sistem-administrasi-sura-1413b.firebaseapp.com",
@@ -88,9 +79,7 @@
     const logDoc = (aksi, r, detail) => ({ aksi, sid: r.id || "", jenis: r.jenis, nomor: r.nomor, detail, at: new Date().toISOString(), by: ME.nama });
     const errMsg = er => (er && (er.code || er.message)) || "tidak diketahui";
 
-    // ============================================================
-    //  Konfigurasi halaman & state
-    // ============================================================
+    //  Konfigurasi halaman & status
     // [judul, subjudul, jenis, peran yang boleh]
     const META = {
         beranda: ["Beranda", "Ringkasan administrasi surat", "", ["admin"]],
@@ -110,10 +99,8 @@
     const badge = (j, text = j, icon = true) => `<span class="badge ${JN[j][0]}">${icon ? ic(JN[j][1]) + " " : ""}${text}</span>`;
     const chips = (attr, items) => items.map(([v, l]) => `<button class="chip" data-${attr}="${v}">${l}</button>`).join("");
     const initials = n => String(n || "?").trim().split(/\s+/).slice(0, 2).map(w => w[0]).join("").toUpperCase();
-
-    // ============================================================
+    
     //  Komponen UI: toast, navigasi, modal
-    // ============================================================
     function toast(msg, t) {
         const e = document.createElement("div");
         e.className = "toast " + (t || "");
@@ -156,9 +143,7 @@
     const closeModal = () => { if (locked) return; ov.classList.remove("show"); document.body.style.overflow = ""; };
     ov.addEventListener("mousedown", e => { if (e.target === ov) closeModal(); });
 
-    // ============================================================
     //  Form tambah/edit, hapus & detail surat
-    // ============================================================
     function formModal(r, preset) {
         const e = !!r;
         if (e && !isAdm()) return;
@@ -248,9 +233,7 @@
     <div class="mf"><button class="btn b-gh" data-close>Tutup</button>${isAdm() ? `<button class="btn b-gh" data-edit="${r.id}">${ic("edit")} Edit</button><button class="btn b-er" data-del="${r.id}">${ic("trash")} Hapus</button>` : ""}<button class="btn b-pr" data-dl="${r.id}">${ic("doc")} Download Word</button></div>`);
     }
 
-    // ============================================================
     //  Ekspor Word (.docx) — dibuat langsung di browser, tanpa library
-    // ============================================================
     const crcT = (() => { const t = new Uint32Array(256); for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; } return t; })();
     const crc32 = b => { let c = ~0; for (let i = 0; i < b.length; i++) c = crcT[(c ^ b[i]) & 255] ^ (c >>> 8); return ~c >>> 0; };
 
@@ -348,10 +331,8 @@
             toast("Dokumen Word berhasil diunduh");
         } catch (er) { toast("Gagal membuat dokumen Word", "er"); }
     }
-
-    // ============================================================
+    
     //  Beranda (Admin): statistik & grafik
-    // ============================================================
     function monthly(n = 6) {
         const o = [], now = new Date();
         for (let i = n - 1; i >= 0; i--) {
@@ -410,9 +391,7 @@
         setTimeout(() => { const c = $("#dn"); if (c) c.setAttribute("stroke-dasharray", c.dataset.d); }, 150);
     }
 
-    // ============================================================
     //  Halaman Data Surat: tabel, filter, ekspor, cetak
-    // ============================================================
     function filtered() {
         const q = st.q.toLowerCase(), j = jenisAktif();
         return SURAT.filter(r => (!j || r.jenis === j) && (!st.from || r.tanggal >= st.from) && (!st.to || r.tanggal <= st.to) &&
@@ -493,9 +472,7 @@
         window.print();
     }
 
-    // ============================================================
     //  Riwayat (Admin)
-    // ============================================================
     function mRiwayat() {
         view.innerHTML = `<div class="ph"><div><h2>${META.riwayat[0]}</h2><p>${META.riwayat[1]}</p></div><div class="acts"><button class="btn b-gh" data-act="clear" ${RIWAYAT.length ? "" : "disabled"}>${ic("trash")} Bersihkan Riwayat</button></div></div>
   <div class="card flt"><div class="f"><label>Jenis aktivitas</label><div class="chips" id="ac">${chips("a", [["", "Semua"], ["tambah", "Ditambahkan"], ["ubah", "Diubah"], ["hapus", "Dihapus"]])}</div></div><div class="mu sp" id="rc"></div></div>
@@ -525,9 +502,7 @@
         $("#tl").innerHTML = h;
     }
 
-    // ============================================================
     //  Kelola Pengguna (Admin)
-    // ============================================================
     function mPengguna() {
         const q = st.q.toLowerCase();
         const U = USERS.filter(u => !q || [u.nama, u.email, u.role].some(v => String(v || "").toLowerCase().includes(q)))
@@ -577,10 +552,8 @@
             toast(er.code === "auth/email-already-in-use" ? "Email sudah terdaftar di Firebase" : er.code === "auth/weak-password" ? "Kata sandi terlalu lemah" : "Gagal membuat akun: " + errMsg(er), "er");
         }
     }
-
-    // ============================================================
+    
     //  Cadangan, pemulihan & impor data lama
-    // ============================================================
     async function importData(d, tag) {
         const ops = [], now = new Date().toISOString();
         d.surat.forEach(r => { const { id, ...x } = r; ops.push(b => b.set(C.surat.doc(tag + id), { ...x, createdAt: x.createdAt || now, uid: ME.uid, by: x.by || "Impor data", byEmail: x.byEmail || "" })); });
@@ -591,9 +564,7 @@
     }
     const tagOf = d => typeof (d.surat[0] || {}).id === "number" ? "L" : "";
 
-    // ============================================================
     //  Navigasi & event handler
-    // ============================================================
     function refresh() { renderNav(); ({ beranda: mBeranda, riwayat: mRiwayat, pengguna: mPengguna }[st.view] || mData)(); }
 
     function setView(v, anim = true) {
@@ -799,9 +770,7 @@
     if (!location.hash) history.replaceState(null, "", "#/login");
     $("#out").onclick = () => auth.signOut();
 
-    // ============================================================
     //  Login, peran & sinkronisasi data real-time
-    // ============================================================
     const stop = () => { unsubs.forEach(u => u()); unsubs = []; };
 
     function listen() {
