@@ -3,100 +3,129 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1d4ed8">
   <title>Buku Agenda Surat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <section class="login-page" id="login-page" aria-label="Masuk administrator">
+  <!-- ============ HALAMAN LOGIN (Admin & User) ============ -->
+  <section class="login-page" id="login-page" aria-label="Masuk">
     <aside class="login-story">
+      <i class="orb o1"></i><i class="orb o2"></i>
       <div class="login-university">
-        <img src="logo unisa.png.jpg" alt="Logo Universitas Islam Al-Ihya Kuningan" onerror="this.style.display='none'">
+        <span class="logo-tile"><img src="logo unisa.png.jpg" alt="Logo Universitas Islam Al-Ihya Kuningan" onerror="this.style.display='none'"></span>
         <div><strong>UNISA Kuningan</strong><span>Universitas Islam Al-Ihya</span></div>
       </div>
+
       <div class="login-story-copy">
         <span class="login-kicker">SISTEM ADMINISTRASI SURAT</span>
         <h1>Kelola Administrasi Surat dengan Lebih Mudah</h1>
-        <p>Ruang kerja digital untuk pencatatan surat masuk dan keluar yang tertata, terlacak, dan dapat diakses oleh administrator.</p>
+        <p>Ruang kerja digital untuk pencatatan surat masuk dan keluar yang tertata, terlacak, dan siap diunduh dalam bentuk dokumen Word.</p>
+        <ul class="login-points">
+          <li><span data-ic="inbox"></span>Catat surat masuk &amp; keluar</li>
+          <li><span data-ic="doc"></span>Unduh lembar agenda ke Word</li>
+          <li><span data-ic="shield"></span>Akses sesuai peran Admin / User</li>
+        </ul>
       </div>
-      <div class="login-illustration" aria-hidden="true">
-        <div class="paper paper-back"></div>
-        <div class="paper paper-front"><span></span><i></i><i></i><i></i><b></b></div>
-        <div class="mail-tile"><span></span></div>
-        <div class="data-tile"><i></i><i></i><i></i><span></span></div>
-        <div class="orbit-line"></div>
+
+      <div class="login-art" aria-hidden="true">
+        <div class="art-card"><div class="art-head"><span data-ic="mail"></span><b></b></div><i></i><i></i><i class="s"></i><em></em></div>
+        <div class="art-chip c1"><span data-ic="inbox"></span>Surat Masuk</div>
+        <div class="art-chip c2"><span data-ic="send"></span>Surat Keluar</div>
+        <div class="art-chip c3"><span data-ic="doc"></span>.docx</div>
       </div>
+
       <div class="login-story-foot"><span class="status-mark"></span>Administrasi kampus, kini lebih terhubung</div>
     </aside>
 
     <main class="login-main">
       <div class="login-mobile-brand">
-        <img src="logo unisa.png.jpg" alt="Logo Universitas Islam Al-Ihya Kuningan" onerror="this.style.display='none'">
+        <span class="logo-tile"><img src="logo unisa.png.jpg" alt="Logo" onerror="this.style.display='none'"></span>
         <span>UNISA Kuningan</span>
       </div>
       <div class="login-form-wrap">
-        <div class="login-app-mark"><span id="login-app-icon"></span></div>
-        <p class="login-eyebrow">PANEL ADMINISTRATOR</p>
-        <h2>Masuk ke Panel Admin</h2>
-        <p class="login-intro">Silakan masuk menggunakan akun administrator Anda.</p>
+        <div class="login-app-mark"><span data-ic="mail"></span></div>
+        <p class="login-eyebrow">BUKU AGENDA SURAT</p>
+        <h2>Selamat Datang</h2>
+        <p class="login-intro">Pilih status akun Anda, lalu masuk menggunakan email dan kata sandi.</p>
+
+        <div class="role-tab" id="role-tab" data-v="user" role="tablist" aria-label="Status akun">
+          <i class="role-pill"></i>
+          <button type="button" class="on" data-role-pick="user" role="tab"><span data-ic="user"></span>User</button>
+          <button type="button" data-role-pick="admin" role="tab"><span data-ic="shield"></span>Admin</button>
+        </div>
+
         <div class="login-error" id="login-error" role="alert" hidden></div>
         <form id="lg" class="login-form" novalidate>
           <div class="login-field">
             <label for="login-email">Email</label>
-            <div class="login-input-wrap"><span id="login-email-icon" aria-hidden="true"></span><input id="login-email" type="email" name="email" autocomplete="username" placeholder="nama@unisa.ac.id" required></div>
+            <div class="login-input-wrap"><span data-ic="mail" aria-hidden="true"></span><input id="login-email" type="email" name="email" autocomplete="username" placeholder="nama@unisa.ac.id" required></div>
             <small class="login-field-error" data-error-for="email" hidden>Masukkan alamat email yang valid.</small>
           </div>
           <div class="login-field">
             <label for="login-password">Kata sandi</label>
-            <div class="login-input-wrap"><span id="login-lock-icon" aria-hidden="true"></span><input id="login-password" type="password" name="pw" autocomplete="current-password" placeholder="Masukkan kata sandi" required><button type="button" class="pwt" aria-label="Tampilkan kata sandi"><span id="login-eye-icon"></span></button></div>
+            <div class="login-input-wrap"><span data-ic="lock" aria-hidden="true"></span><input id="login-password" type="password" name="pw" autocomplete="current-password" placeholder="Masukkan kata sandi" required><button type="button" class="pwt" aria-label="Tampilkan kata sandi"><span data-ic="eye"></span></button></div>
             <small class="login-field-error" data-error-for="pw" hidden>Masukkan kata sandi Anda.</small>
           </div>
-          <button class="login-submit" type="submit" id="login-submit"><span class="login-spinner" aria-hidden="true"></span><span class="login-submit-label">Masuk sebagai Admin</span><span class="login-submit-arrow" aria-hidden="true">&#8594;</span></button>
+          <button class="login-submit" type="submit" id="login-submit"><span class="login-spinner" aria-hidden="true"></span><span class="login-submit-label">Masuk sebagai User</span><span class="login-submit-arrow" aria-hidden="true">&#8594;</span></button>
         </form>
-        <p class="login-secure"><span aria-hidden="true"></span>Akses terbatas untuk administrator terdaftar</p>
+        <p class="login-secure"><span data-ic="shield" aria-hidden="true"></span>Akun dibuat &amp; dikelola oleh administrator</p>
       </div>
       <div class="login-copyright">&copy; <span id="login-year"></span> Universitas Islam Al-Ihya Kuningan</div>
     </main>
   </section>
 
+  <!-- ============ APLIKASI ============ -->
   <div id="app-shell" hidden>
-  <header>
-    <div class="wrap hd">
-      <div class="brand">
-        <img src="logo unisa.png.jpg" alt="Logo" onerror="this.style.display='none'">
-        <div>
-          <h1>Buku Agenda Surat Masuk dan Keluar</h1>
-          <p>Sistem Administrasi Surat Universitas Islam Al-Ihya Kuningan</p>
+    <aside class="side" id="side">
+      <div class="sb-brand">
+        <span class="logo-tile"><img src="logo unisa.png.jpg" alt="Logo" onerror="this.style.display='none'"></span>
+        <div><strong>UNISA Kuningan</strong><span>Buku Agenda Surat</span></div>
+      </div>
+      <button class="sb-add" data-add><span data-ic="plus"></span>Tambah Surat</button>
+      <div class="sb-label">MENU</div>
+      <nav class="sb-nav" id="side-nav" aria-label="Menu utama"></nav>
+      <div class="sb-note" id="side-note"></div>
+    </aside>
+
+    <div class="col">
+      <header class="top">
+        <div class="wrap hd">
+          <div class="mb-brand"><span class="logo-tile"><img src="logo unisa.png.jpg" alt="Logo" onerror="this.style.display='none'"></span><strong>Agenda Surat</strong></div>
+          <div class="search" id="sbox">
+            <span id="sIc"></span>
+            <input id="gs" placeholder="Cari nomor agenda, instansi, perihal...   ( tekan / )" autocomplete="off">
+            <button id="gc" aria-label="Hapus"></button>
+          </div>
+          <div class="sp"></div>
+          <div class="chip-d" id="dt"></div>
+          <div class="me" id="me"></div>
+          <button class="ibtn" id="out" title="Keluar akun" aria-label="Keluar akun"></button>
         </div>
-      </div>
-      <div class="sp"></div>
-      <div class="search" id="sbox">
-        <span id="sIc"></span>
-        <input id="gs" placeholder="Cari nomor agenda, instansi, perihal...   ( tekan / )" autocomplete="off">
-        <button id="gc" aria-label="Hapus"></button>
-      </div>
-      <div class="chip-d" id="dt"></div>
-      <button class="ibtn" id="theme" title="Ganti tema"></button>
-      <button class="ibtn" id="out" title="Keluar akun"></button>
+      </header>
+
+      <main>
+        <div class="wrap">
+          <div id="view" class="view"></div>
+        </div>
+      </main>
+
+      <footer>
+        Copyright &copy; <span id="yr"></span> by <strong>Muhamad Rizki Ramdani</strong><br>
+        Sistem Administrasi Buku Agenda Surat Masuk dan Keluar
+      </footer>
     </div>
-  </header>
 
-  <main>
-    <div class="wrap">
-      <div id="view" class="view"></div>
+    <nav class="dock" id="dock" aria-label="Menu utama (ponsel)"></nav>
+    <div class="ov" id="ov">
+      <div class="md" id="md"></div>
     </div>
-  </main>
-
-  <footer>
-    Copyright &copy; <span id="yr"></span> by <strong>Muhamad Rizki Ramdani</strong><br>
-    Sistem Administrasi Buku Agenda Surat Masuk dan Keluar
-  </footer>
-
-  <nav class="dock" id="dock" aria-label="Menu utama"></nav>
-  <div class="ov" id="ov">
-    <div class="md" id="md"></div>
   </div>
-  </div>
+
   <div class="toasts" id="toasts"></div>
   <div id="pa"></div>
   <input type="file" id="file" accept=".json,application/json" hidden>
