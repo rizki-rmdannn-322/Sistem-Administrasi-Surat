@@ -31,7 +31,7 @@ h1, h2, h3, h4 { line-height: 1.25; letter-spacing: -.01em; }
 .sp { flex: 1; }
 .mt8 { margin-top: 8px; }
 
-/* ---------- warna semantik (dipakai ikon, lencana, titik) ---------- */
+/*warna semantik (dipakai ikon, lencana, titik) */
 .c-pr { --c: #1d4ed8; --c2: #60a5fa; --cb: #e0ebff; }
 .c-in { --c: #0369a1; --c2: #38bdf8; --cb: #e0f4ff; }
 .c-out { --c: #4338ca; --c2: #818cf8; --cb: #e8eaff; }
@@ -40,9 +40,7 @@ h1, h2, h3, h4 { line-height: 1.25; letter-spacing: -.01em; }
 .c-er { --c: #b91c1c; --c2: #f87171; --cb: #fee2e2; }
 .bg-in { background: #0ea5e9; } .bg-out { background: #6366f1; }
 
-/* =====================================================================
-   LOGIN
-   ===================================================================== */
+/*LOGIN */
 .login-page { min-height: 100vh; display: grid; grid-template-columns: 1.05fr .95fr; background: #fff; }
 .login-story {
   position: relative; overflow: hidden; color: #fff; padding: 40px 54px; display: flex; flex-direction: column; justify-content: space-between; gap: 28px;
@@ -112,9 +110,7 @@ h1, h2, h3, h4 { line-height: 1.25; letter-spacing: -.01em; }
 .login-secure .ic { color: var(--b500); }
 .login-copyright { color: #8a97b3; font-size: 12px; margin-top: 18px; }
 
-/* =====================================================================
-   KERANGKA APLIKASI: sidebar + header
-   ===================================================================== */
+/*KERANGKA APLIKASI: sidebar + header*/
 #app-shell { min-height: 100vh; }
 .side {
   position: fixed; z-index: 30; inset: 0 auto 0 0; width: 272px; padding: 22px 16px; display: flex; flex-direction: column; gap: 14px; color: #dbe7ff; overflow: hidden;
@@ -165,12 +161,10 @@ h1, h2, h3, h4 { line-height: 1.25; letter-spacing: -.01em; }
 footer { text-align: center; color: var(--mu); font-size: 12.5px; padding: 22px 16px 28px; border-top: 1px solid var(--bd); }
 footer strong { color: var(--b700); }
 
-/* ---------- dock (ponsel) ---------- */
+/*dock (ponsel) */
 .dock { display: none; }
 
-/* =====================================================================
-   KOMPONEN
-   ===================================================================== */
+/*KOMPONEN*/
 .view { animation: viewIn .45s var(--ease) both; }
 .card { background: var(--card); border: 1px solid var(--bd); border-radius: var(--r); box-shadow: var(--sh); }
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 11px 18px; border-radius: 13px; font-weight: 700; font-size: 13.5px; transition: .22s var(--ease); white-space: nowrap; }
@@ -194,7 +188,7 @@ footer strong { color: var(--b700); }
 .note { display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; margin-bottom: 16px; border-radius: 16px; background: linear-gradient(120deg, #eaf2ff, #f3f8ff); border: 1px solid var(--b200); color: var(--b800); font-size: 13.5px; }
 .note .ic { margin-top: 2px; color: var(--b600); }
 
-/* ---------- beranda ---------- */
+/*beranda*/
 .hero {
   position: relative; overflow: hidden; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: 18px; padding: 36px 38px; border-radius: 28px; color: #fff;
   background: var(--tex), radial-gradient(520px 280px at 92% 0%, rgba(125, 211, 252, .5), transparent 70%), linear-gradient(120deg, #1e3a8a, #2563eb 58%, #38bdf8); box-shadow: 0 26px 44px -22px rgba(37, 99, 235, .75);
@@ -233,7 +227,7 @@ footer strong { color: var(--b700); }
 .empty { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 46px 16px; color: var(--mu); text-align: center; }
 .empty .ic { width: 44px; height: 44px; color: var(--b300); } .empty.tight { padding: 24px 10px; }
 
-/* ---------- filter & tabel ---------- */
+/*filter & tabel*/
 .flt { display: flex; align-items: flex-end; gap: 16px; flex-wrap: wrap; padding: 16px 18px; margin-bottom: 16px; }
 .f { display: grid; gap: 6px; } .f label { font-size: 12px; font-weight: 700; color: var(--mu); text-transform: uppercase; letter-spacing: .05em; }
 .f input, .f select { padding: 9px 12px; border-radius: 11px; border: 1.5px solid var(--bd); background: #fff; }
@@ -270,7 +264,7 @@ mark { background: #fde68a; color: inherit; border-radius: 4px; padding: 0 2px; 
 .ucell { display: flex; align-items: center; gap: 11px; } .you { font-size: 11px; font-weight: 700; padding: 2px 9px; border-radius: 99px; color: var(--b700); background: var(--b100); }
 .rsel { padding: 7px 10px; border-radius: 10px; border: 1.5px solid var(--b100); background: var(--b50); font-weight: 700; color: var(--b800); cursor: pointer; }
 
-/* ---------- riwayat ---------- */
+/* riwayat*/
 .tl { padding: 8px 22px 20px; } .day { margin: 18px 0 8px; font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--b600); }
 .ti { position: relative; display: flex; gap: 14px; padding: 8px 0; animation: rise .4s var(--ease) both; }
 .ti:not(:last-child)::before { content: ""; position: absolute; left: 19px; top: 52px; bottom: -6px; width: 2px; background: var(--b100); }
@@ -278,7 +272,7 @@ mark { background: #fde68a; color: inherit; border-radius: 4px; padding: 0 2px; 
 .tt { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; } .tt time { margin-left: auto; color: var(--mu); font-size: 12px; } .td { color: #3d4c6b; margin-top: 5px; font-size: 13.5px; }
 .tag { padding: 3px 10px; border-radius: 99px; font-size: 11.5px; font-weight: 700; background: var(--cb); color: var(--c); }
 
-/* ---------- modal ---------- */
+/*modal*/
 .ov { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 18px; background: rgba(11, 30, 90, .45); backdrop-filter: blur(7px); opacity: 0; visibility: hidden; transition: .25s; }
 .ov.show { opacity: 1; visibility: visible; }
 .md { width: min(640px, 100%); max-height: 92vh; overflow: auto; background: #fff; border-radius: 26px; box-shadow: 0 40px 80px -30px rgba(11, 30, 90, .7); transform: translateY(28px) scale(.95); transition: transform .4s cubic-bezier(.2, 1.25, .4, 1); }
@@ -305,17 +299,17 @@ mark { background: #fde68a; color: inherit; border-radius: 4px; padding: 0 2px; 
 .isi { padding: 14px 16px; border-radius: 14px; background: var(--b50); border: 1px solid var(--b100); white-space: pre-wrap; word-break: break-word; }
 .mb > .r2 { row-gap: 14px; }
 
-/* ---------- toast ---------- */
+/*toast*/
 .toasts { position: fixed; z-index: 200; top: 18px; right: 18px; display: grid; gap: 10px; justify-items: end; pointer-events: none; }
 .toast { display: flex; align-items: center; gap: 10px; padding: 13px 18px; border-radius: 15px; color: #fff; font-weight: 600; background: linear-gradient(120deg, #1d4ed8, #2563eb); box-shadow: 0 20px 34px -14px rgba(37, 99, 235, .8); animation: toastIn .45s var(--ease) both; max-width: min(380px, 90vw); }
 .toast.er { background: linear-gradient(120deg, #dc2626, #ef4444); box-shadow: 0 20px 34px -14px rgba(220, 38, 38, .7); }
 .toast.out { animation: toastOut .35s forwards; }
 
-/* ---------- skeleton ---------- */
+/*skeleton*/
 .sk { height: 100px; border-radius: 20px; background: linear-gradient(90deg, #e6eefc 25%, #f4f8ff 50%, #e6eefc 75%); background-size: 200% 100%; animation: shimmer 1.3s infinite; }
 .sk-wrap { display: grid; gap: 16px; } .sk.h1 { height: 150px; border-radius: 28px; } .sk.tall { height: 300px; } .sk-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
 
-/* ---------- cetak ---------- */
+/*etak*/
 #pa { display: none; }
 @media print {
   body { background: #fff !important; }
@@ -326,9 +320,7 @@ mark { background: #fde68a; color: inherit; border-radius: 4px; padding: 0 2px; 
   #pa th { background: #e5edff; } #pa .ft { margin-top: 16px; font-size: 10px; text-align: center; }
 }
 
-/* =====================================================================
-   ANIMASI
-   ===================================================================== */
+/*ANIMASI*/
 @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 @keyframes viewIn { from { opacity: 0; transform: translateY(10px) scale(.995); } to { opacity: 1; transform: none; } }
 @keyframes grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
@@ -341,9 +333,7 @@ mark { background: #fde68a; color: inherit; border-radius: 4px; padding: 0 2px; 
 @keyframes shimmer { to { background-position: -200% 0; } }
 .art-card { --rot: -4deg; }
 
-/* =====================================================================
-   RESPONSIF
-   ===================================================================== */
+/*RESPONSIF*/
 @media (max-width: 1200px) { .chip-d { display: none; } .stats { grid-template-columns: repeat(2, 1fr); } .g2, .g2b { grid-template-columns: 1fr; } }
 @media (max-width: 1023px) {
   .side { display: none; } .col { margin-left: 0; }
