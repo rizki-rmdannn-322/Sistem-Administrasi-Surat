@@ -360,3 +360,35 @@ mark { background: #fde68a; color: inherit; border-radius: 4px; padding: 0 2px; 
   .ph .acts .btn { flex: 1; } .th { padding: 16px; } .pn { padding: 18px; } .sk-row { grid-template-columns: 1fr 1fr; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
+
+/* Perbaikan lebar & header di HP */
+@media (max-width: 1200px) {
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .g2, .g2b { grid-template-columns: minmax(0, 1fr); }
+}
+html, body { max-width: 100%; overflow-x: clip; }
+.col, .col > main, .wrap, .view { min-width: 0; }
+.g2 > *, .g2b > *, .stats > *, .flt > * { min-width: 0; }
+.search, .search input { min-width: 0; }
+
+@media (max-width: 640px) {
+  .hd { gap: 8px; }
+  .mb-brand strong { display: none; }  
+}
+@media (max-width: 1023px) {
+  .hd .sp { display: none; }            
+  .search { flex: 1 1 0; }
+  .bub span { display: none; }          
+  .bub.on { flex: 1.9; }
+  .bub.on span { display: block; }
+}
+
+/* Dock HP: semua menu berlabel, tombol + melayang */
+@media (max-width: 1023px) {
+  .dock { padding: 8px 4px; gap: 0; }
+  .bub { flex: 1 1 0; padding: 8px 0; font-size: 10px; }
+  .bub.on { flex: 1 1 0; }
+  .bub span { display: block; }
+  .bub.add { position: absolute; right: 6px; top: -64px; width: 52px; height: 52px; margin: 0; }
+  .col > main { padding-bottom: 140px; }
+}
