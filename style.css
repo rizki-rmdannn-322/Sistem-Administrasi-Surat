@@ -142,8 +142,8 @@ h1, h2, h3, h4 { line-height: 1.25; letter-spacing: -.01em; }
 .top { position: sticky; top: 0; z-index: 20; background: rgba(242, 246, 255, .8); backdrop-filter: blur(14px) saturate(1.4); border-bottom: 1px solid var(--bd); }
 .hd { display: flex; align-items: center; gap: 14px; min-height: 72px; }
 .mb-brand { display: none; align-items: center; gap: 10px; font-weight: 800; color: var(--b800); }
-.mb-brand .logo-tile { width: 52px; height: 52px; border-radius: 12px; background: var(--b50); box-shadow: none; }
-.mb-brand img { width: 40px; height: 40px; }
+.mb-brand .logo-tile { width: 38px; height: 38px; border-radius: 12px; background: var(--b50); box-shadow: none; }
+.mb-brand img { width: 28px; height: 28px; }
 .search { position: relative; flex: 1 1 380px; max-width: 520px; }
 .search > span { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--b500); display: grid; pointer-events: none; }
 .search input { width: 100%; padding: 12px 42px 12px 44px; border-radius: 15px; border: 1.5px solid var(--bd); background: #fff; transition: .2s; box-shadow: 0 6px 14px -10px rgba(37, 99, 235, .3); }
