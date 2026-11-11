@@ -51,8 +51,8 @@ h1, h2, h3, h4 { line-height: 1.25; letter-spacing: -.01em; }
 .orb.o2 { width: 300px; height: 300px; left: -120px; bottom: -110px; background: radial-gradient(circle, rgba(255, 255, 255, .22), transparent 68%); animation-delay: -4s; }
 .login-story > :not(.orb) { position: relative; }
 .login-university { display: flex; align-items: center; gap: 14px; }
-.logo-tile { width: 46px; height: 46px; border-radius: 14px; background: #fff; display: grid; place-items: center; box-shadow: 0 8px 20px -8px rgba(0, 0, 0, .35); overflow: hidden; flex: none; }
-.logo-tile img { width: 34px; height: 34px; object-fit: contain; }
+.logo-tile { width: 64px; height: 64px; border-radius: 14px; background: #fff; display: grid; place-items: center; box-shadow: 0 8px 20px -8px rgba(0, 0, 0, .35); overflow: hidden; flex: none; }
+.logo-tile img { width: 50px; height: 50px; object-fit: contain; }
 .login-university strong { display: block; font-size: 17px; }
 .login-university span:not(.logo-tile) { font-size: 12.5px; color: #cfe0ff; }
 .login-kicker { display: inline-block; font-size: 11.5px; font-weight: 700; letter-spacing: .14em; padding: 6px 12px; border-radius: 99px; background: rgba(255, 255, 255, .16); border: 1px solid rgba(255, 255, 255, .25); }
@@ -142,8 +142,8 @@ h1, h2, h3, h4 { line-height: 1.25; letter-spacing: -.01em; }
 .top { position: sticky; top: 0; z-index: 20; background: rgba(242, 246, 255, .8); backdrop-filter: blur(14px) saturate(1.4); border-bottom: 1px solid var(--bd); }
 .hd { display: flex; align-items: center; gap: 14px; min-height: 72px; }
 .mb-brand { display: none; align-items: center; gap: 10px; font-weight: 800; color: var(--b800); }
-.mb-brand .logo-tile { width: 38px; height: 38px; border-radius: 12px; background: var(--b50); box-shadow: none; }
-.mb-brand img { width: 28px; height: 28px; }
+.mb-brand .logo-tile { width: 52px; height: 52px; border-radius: 12px; background: var(--b50); box-shadow: none; }
+.mb-brand img { width: 40px; height: 40px; }
 .search { position: relative; flex: 1 1 380px; max-width: 520px; }
 .search > span { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--b500); display: grid; pointer-events: none; }
 .search input { width: 100%; padding: 12px 42px 12px 44px; border-radius: 15px; border: 1.5px solid var(--bd); background: #fff; transition: .2s; box-shadow: 0 6px 14px -10px rgba(37, 99, 235, .3); }
