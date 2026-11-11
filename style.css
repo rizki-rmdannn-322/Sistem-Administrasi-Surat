@@ -51,7 +51,7 @@ h1, h2, h3, h4 { line-height: 1.25; letter-spacing: -.01em; }
 .orb.o2 { width: 300px; height: 300px; left: -120px; bottom: -110px; background: radial-gradient(circle, rgba(255, 255, 255, .22), transparent 68%); animation-delay: -4s; }
 .login-story > :not(.orb) { position: relative; }
 .login-university { display: flex; align-items: center; gap: 14px; }
-.logo-tile { width: 64px; height: 64px; border-radius: 14px; background: #fff; display: grid; place-items: center; box-shadow: 0 8px 20px -8px rgba(0, 0, 0, .35); overflow: hidden; flex: none; }
+.logo-tile { width: 64px; height: 64px; border-radius: 14px; background: none; display: grid; place-items: center; box-shadow: none; overflow: hidden; flex: none; }
 .logo-tile img { width: 50px; height: 50px; object-fit: contain; }
 .login-university strong { display: block; font-size: 17px; }
 .login-university span:not(.logo-tile) { font-size: 12.5px; color: #cfe0ff; }
