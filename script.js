@@ -126,7 +126,7 @@
         const items = NAV.filter(([id]) => allowed(id));
         $("#side-nav").innerHTML = items.map(([id, i, l]) => `<button class="nv ${st.view === id ? "on" : ""}" data-go="${id}">${ic(i)}<span>${l}</span>${n[id] ? `<em class="cnt">${n[id]}</em>` : ""}</button>`).join("");
         const mid = Math.ceil(items.length / 2);
-        const dk = items.map(([id, i, l]) => `<button class="bub ${st.view === id ? "on" : ""}" data-go="${id}" title="${l}">${ic(i)}<span>${l.replace("Surat ", "")}</span></button>`);
+        const dk = items.map(([id, i, l]) => `<button class="bub ${st.view === id ? "on" : ""}" data-go="${id}" title="${l}">${ic(i)}<span>${l === "Semua Surat" ? "Semua" : l.replace("Surat ", "")}</span>
         dk.splice(mid, 0, `<button class="bub add" data-add title="Tambah surat (N)" aria-label="Tambah surat">${ic("plus")}</button>`);
         $("#dock").innerHTML = dk.join("");
     }
