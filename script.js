@@ -132,7 +132,7 @@
         $("#me").innerHTML = `<span class="av">${esc(initials(ME.nama))}</span><span class="mi"><b>${esc(cut(ME.nama, 22))}</b><small>${isAdm() ? "Administrator" : "User"}</small></span>`;
         $("#side-note").innerHTML = isAdm()
             ? `<div class="sn-h">${ic("shield")} Akses Administrator</div><p>Kelola seluruh surat, riwayat, dan akun pengguna.</p>`
-            : `<div class="sn-h">${ic("user")} Akses User</div><p>Anda dapat menambah surat dan mengunduh Word. Edit &amp; hapus hanya oleh admin.</p>`;
+            : `<div class="sn-h">${ic("user")} Akses User</div><p>Kamu dapat menambah surat dan mengunduh Word. Edit &amp; hapus hanya oleh admin.</p>`;
     }
 
     const ov = $("#ov");
@@ -408,7 +408,7 @@
     function mData() {
         const [t, s] = META[st.view], adm = isAdm();
         view.innerHTML = `<div class="ph"><div><h2>${t}</h2><p>${s}</p></div><div class="acts"><button class="btn b-pr" data-add>${ic("plus")} Tambah Surat</button></div></div>
-  ${adm ? "" : `<div class="note">${ic("info")}<span>Anda masuk sebagai <b>User</b>: Anda dapat menambah surat, melihat surat yang Anda input, dan mengunduh dokumen Word. Mengubah atau menghapus surat hanya dapat dilakukan oleh Admin.</span></div>`}
+  ${adm ? "" : `<div class="note">${ic("info")}<span>Kamu masuk sebagai <b>User</b>: Kamu dapat menambah surat, melihat surat yang Kamu input, dan mengunduh dokumen Word. Mengubah atau menghapus surat hanya dapat dilakukan oleh Admin.</span></div>`}
   <div class="card flt">${st.view === "semua" ? `<div class="f"><label>Jenis</label><div class="chips" id="jc">${chips("j", [["", "Semua"], ["Masuk", "Masuk"], ["Keluar", "Keluar"]])}</div></div>` : ""}
     <div class="f"><label>Dari tanggal</label><input type="date" id="df" value="${st.from}"></div><div class="f"><label>Sampai tanggal</label><input type="date" id="dto" value="${st.to}"></div>
     <div class="f"><label>Periode cepat</label><div class="chips">${chips("r", [["all", "Semua"], ["7", "7 hari"], ["30", "30 hari"], ["m", "Bulan ini"]])}</div></div>
