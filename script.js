@@ -58,8 +58,8 @@
     //  Koleksi: users/{uid} • surat/{id} • riwayat/{id} • meta/counters
     const FIREBASE_CONFIG = {
         apiKey: "AIzaSyAiLylQl2B4jtoBJT47CmWwNobesgKHNgM",
-        authDomain: "sistem-administrasi-surat-1413b.firebaseapp.com",
-        projectId: "sistem-administrasi-surat-1413b",
+        authDomain: "sistem-administrasi-sura-1413b.firebaseapp.com",
+        projectId: "sistem-administrasi-sura-1413b",
         appId: "1:665939059922:web:21283e7642871f7f46b90b"
     };
     firebase.initializeApp(FIREBASE_CONFIG);
